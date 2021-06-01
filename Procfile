@@ -1,0 +1,1 @@
+web: gunicorn marketing_project.wsgi
