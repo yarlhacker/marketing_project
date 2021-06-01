@@ -81,8 +81,15 @@ WSGI_APPLICATION = 'marketing_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2mnegjsrurj24',
+        'HOST' : 'ec2-23-23-128-222.compute-1.amazonaws.com',
+        'PORT' : 5432,
+        'USER' : 'rljlcfkajgpsly',
+        'PASSWORD': 'b91e9e3daa731532b037e7ebb01e1d1aa302561dd577aef6d499cd06c3d8eff1'
+        
     }
 }
 
