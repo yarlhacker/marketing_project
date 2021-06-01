@@ -1,11 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
-
-
+from django.db.models.fields.files import FileField
 from website.models import Base
 
 class  Categorie(Base):
-    
     title = models.CharField(max_length=250)
 
     def __str__(self):
@@ -17,9 +15,8 @@ class  Categorie(Base):
 
 
 class  Service(Base):
-    
     title = models.CharField(max_length=250)
-    logo = models.CharField(max_length=250)
+    logo = models.FileField(upload_to='images')
     introduction = models.TextField()
     nom = models.CharField(max_length=250)
     nom_compagny = models.CharField(max_length=250)
@@ -30,7 +27,6 @@ class  Service(Base):
     conclusion = models.TextField()
     categorie = models.ForeignKey("service.Categorie",related_name = 'categorieservice' ,  on_delete=models.CASCADE)
     
-
     def __str__(self):
         return self.title
 
@@ -40,9 +36,8 @@ class  Service(Base):
 
 
 class  Categorieblog(Base):
-    
     title = models.CharField(max_length=250)
-
+    
     def __str__(self):
         return self.title
 
@@ -52,14 +47,12 @@ class  Categorieblog(Base):
 
 
 class Blog(Base):
-    
     title = models.CharField(max_length=250)
     image = models.FileField(upload_to='images')
     description = models.TextField()
     auteur = models.ForeignKey(User, related_name='auteur_blog', on_delete=models.CASCADE)
-    categorie = models.ForeignKey("service.Categorie",related_name = 'categorieblog' ,  on_delete=models.CASCADE)
+    categorie = models.ForeignKey("service.Categorieblog",related_name = 'categorieblog' ,  on_delete=models.CASCADE)
     
-
     def __str__(self):
         return self.title
 
@@ -69,13 +62,10 @@ class Blog(Base):
 
 
 class Commentaire(Base):
-    
     nom = models.CharField(max_length=250)
     email = models.EmailField(max_length=254)
     message = models.TextField()
     
-    
-
     def __str__(self):
         return self.nom
 
