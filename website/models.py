@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -88,18 +89,6 @@ class  Configuration(Base):
         verbose_name_plural = 'Configurations'
 
 
-class  User(Base):
-    
-    image= models.FileField(upload_to='images')
-    profession = models.CharField(max_length=250)
-
-    
-    class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
-
-
-
 class  Sociaux(Base):
     
     nom = models.CharField(max_length=250)
@@ -114,4 +103,7 @@ class  Sociaux(Base):
         verbose_name_plural = 'Sociaux'
 
 
-
+class Profil(Base):
+    user = models.OneToOneField(User, related_name="profil_user", on_delete=models.CASCADE)
+    image= models.FileField(upload_to='images')
+    profession = models.CharField(max_length=250)

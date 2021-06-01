@@ -1,4 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
+
+
 from website.models import Base
 
 class  Categorie(Base):
@@ -53,7 +56,7 @@ class Blog(Base):
     title = models.CharField(max_length=250)
     image = models.FileField(upload_to='images')
     description = models.TextField()
-    user = models.ForeignKey("website.User", verbose_name=("auteur"), on_delete=models.CASCADE)
+    auteur = models.ForeignKey(User, related_name='auteur_blog', on_delete=models.CASCADE)
     categorie = models.ForeignKey("service.Categorie",related_name = 'categorieblog' ,  on_delete=models.CASCADE)
     
 
